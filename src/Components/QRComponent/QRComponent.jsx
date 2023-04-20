@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from "react";
 import "./QRComponent.css";
-import QRCode from "qrcode";
+import {QRCodeSVG }from "qrcode.react";
+import logo from "../../Assets/logo192.png";
 
-// QRComponent is a component that renders a QR code
-// It takes a string as a prop and renders a QR code
-// for that string
+// qrCodeText is the text that will be converted to a QR code
+// the logo is a local image that will be displayed on the QR code
 const QRComponent = ({ qrCodeText }) => {
-  // The QR code is stored as a data URL in the state
-  const [qrCode, setQRCode] = useState("");
+  const [qrCode, setQrCode] = useState(null);
 
-  // When the component is mounted, generate a QR code
-  // for the qrCodeText prop
   useEffect(() => {
-    QRCode.toDataURL(qrCodeText, (err, url) => {
-      setQRCode(url);
-    });
+    setQrCode(qrCodeText);
   }, [qrCodeText]);
 
   return (
-    <div className="QRComponent">
-      <img src={qrCode} alt="QR Code" />
+    <div className="qr-container">
+      <QRCodeSVG
+        value={qrCode}
+        size={300}
+        imageSettings={{
+          src: logo,
+          height: 50,
+          width: 50,
+          excavate: true,
+        }}
+      />
     </div>
   );
 };
