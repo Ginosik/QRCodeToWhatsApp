@@ -1,29 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./QRComponent.css";
-import {QRCodeSVG }from "qrcode.react";
-import logo from "../../Assets/logo192.png";
+import { useSelector } from "react-redux";
+import { QRCodeSVG } from "qrcode.react";
 
 // qrCodeText is the text that will be converted to a QR code
 // the logo is a local image that will be displayed on the QR code
-const QRComponent = ({ qrCodeText }) => {
-  const [qrCode, setQrCode] = useState(null);
-
-  useEffect(() => {
-    setQrCode(qrCodeText);
-  }, [qrCodeText]);
+const QRComponent = () => {
+  const link = useSelector((state) => state.qrcode.link);
 
   return (
     <div className="qr-container">
-      <QRCodeSVG
-        value={qrCode}
-        size={300}
-        imageSettings={{
-          src: logo,
-          height: 50,
-          width: 50,
-          excavate: true,
-        }}
-      />
+      {link ? (
+        <QRCodeSVG
+          value={link}
+          size={300}
+          bgColor={"#ffffff"}
+          fgColor={"000000"}
+        />
+      ) : (
+        <p>Please enter a link to generate a QR code.</p>
+      )}
     </div>
   );
 };
