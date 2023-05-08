@@ -15,6 +15,9 @@ html, body {
 }
 
 .App-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
   background-color: #222;
   height: 150px;
@@ -27,10 +30,20 @@ html, body {
   flex-grow: 1;
 }
 
+
+/* align the <a> tag with the div horizontaly and veritcaly with a nice text decoration*/
 .App-footer {
   flex-shrink: 0;
   background-color: #222;
   height: 50px;
   padding: 20px;
+  color: white;
+}
+
+.App-footer a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   color: white;
 }
